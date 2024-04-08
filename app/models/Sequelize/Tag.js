@@ -3,7 +3,7 @@ const sequelize = require('../../database/sequelize');
 
 class Tag extends Model {}
 
-User.init(
+Tag.init(
 	{
 		name: {
 			type: DataTypes.TEXT,
