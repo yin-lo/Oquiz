@@ -5,9 +5,6 @@ class Level extends Model {}
 
 Level.init(
 	{
-		// Inutile de preciser l'id, le created_at ou le updated_at sequelize le gere deja pour nous
-		// ATTENTION: peut etre que le champ updatedAt et createdAt n'a pas le meme nom dans sequelize que dans notre bdd
-
 		// Model attributes are defined here
 		name: {
 			type: DataTypes.TEXT,

@@ -1,5 +1,8 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../../database/sequelize');
+// const Level = require('./Level');
+// const Answer = require('./Answer');
+// const Quiz = require('./Quiz');
 
 class Question extends Model {}
 
@@ -20,34 +23,35 @@ Question.init(
 			allowNull: true,
 		},
 
-		level_id: {
+		levelId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			references: {
-				model: Level,
-				key: 'id',
-			},
+			// references: {
+			// 	model: Level,
+			// 	key: 'id',
+			// },
 		},
-		answer_id: {
+		answerId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			references: {
-				model: Answer,
-				key: 'id',
-			},
+			// references: {
+			// 	model: Answer,
+			// 	key: 'id',
+			// },
 		},
-		quiz_id: {
+		quizId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			references: {
-				model: Quiz,
-				key: 'id',
-			},
+			// references: {
+			// 	model: Quiz,
+			// 	key: 'id',
+			// },
 		},
 	},
 	{
 		sequelize,
 		tableName: 'question',
+		underscored: true,
 	}
 );
 

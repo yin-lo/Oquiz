@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../../database/sequelize');
+// const User = require('./User');
 
 class Quiz extends Model {}
 
@@ -15,18 +16,19 @@ Quiz.init(
 			allowNull: true,
 		},
 
-		author_id: {
+		authorId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			references:{
-				model: User,
-				key: 'id',
-			},
+			// references:{
+			// 	model: User,
+			// 	key: 'id',
+			// },
 		},
 
 	}, {
 		sequelize,
 		tableName: 'quiz',
+		underscored: true,
 	},
 );
 
