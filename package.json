@@ -1,35 +1,34 @@
 {
-  "name": "s05-oquiz-red-st0ffle",
+  "name": "s05-oquiz-blue",
   "version": "1.0.0",
-  "description": "Creer un quizz a destination d'etudiant",
+  "description": "## Planning saison",
   "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
-    "dev": "node-dev index",
-    "db:create": "psql -U oquiz -d oquiz -f ./app/data/create-tables.sql",
-    "db:populate": "psql -U oquiz -d oquiz -f ./app/data/seeding.sql",
-    "db:reset": "npm run db:create && npm run db:populate"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/O-clock-Onigiri/S05-oquiz-RED-st0ffle.git"
+    "dev": "node --watch index.js",
+    "db:create": "psql -U oquiz -d oquiz -f ./data/create_tables.sql",
+    "db:seed": "psql -U oquiz -d oquiz -f ./data/populate_tables.sql",
+    "db:addrole": "psql -U oquiz -d oquiz -f ./data/add_role_to_user_table.sql",
+    "db:reset": "npm run db:create && npm run db:seed && npm run db:addrole"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/O-clock-Onigiri/S05-oquiz-RED-st0ffle/issues"
-  },
-  "homepage": "https://github.com/O-clock-Onigiri/S05-oquiz-RED-st0ffle#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "pg": "^8.11.5",
-    "sequelize": "^6.37.2"
+    "sequelize": "^6.37.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1"
   }
 }

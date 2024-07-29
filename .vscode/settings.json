@@ -1,7 +1,16 @@
 {
-	"workbench.colorCustomizations": {
-		"activityBar.background": "#123506",
-		"titleBar.activeBackground": "#194A08",
-		"titleBar.activeForeground": "#F2FDEE"
-	}
+  "files.associations": {"*.ejs": "html"},
+  "htmlhint.options": {
+    "spec-char-escape": false,
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "never",
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#07360A",
+    "titleBar.activeBackground": "#094C0E",
+    "titleBar.activeForeground": "#F0FDF1"
+  },
 }

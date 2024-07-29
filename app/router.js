@@ -1,23 +1,25 @@
-// On importe la methode Router depuis express (qui va nous permettre de creer un nouveau router)
 const { Router } = require('express');
 const mainController = require('./controllers/mainController');
 const levelController = require('./controllers/levelController');
-const exempleController = require('./controllers/exempleController');
+const tagController = require('./controllers/tagController');
+const quizController = require('./controllers/quizController');
+const authController = require('./controllers/authController');
+const isAuthed = require('./middlewares/isAuthed');
+const isAdmin = require('./middlewares/isAdmin');
 
-// On creer un nouveau router
 const router = Router();
 
-// On defini une nouvelle route pour la page d'accueil ('/') en methode GET qui renvoi vers le controlleur home du mainController (methode stocke dans un objet)
-router.get('/', mainController.home);
+router.get('/', mainController.index);
+router.get('/levels', isAdmin, levelController.list);
+router.post('/levels', isAdmin, levelController.create);
 
-// Ajouter une nouvelle route pour liste tous les niveaux presents en BDD (levels)
-router.get('/levels', levelController.displayLevels);
+router.get('/tags', tagController.list);
+router.get('/quiz/:id', isAuthed, quizController.detail);
 
-// On ajoute une nouvelle route. Le nom est toujours /levels mais cette fois ci la methode est post (on veut ajouter un niveau en bdd)
-router.post('/levels', levelController.addLevel);
+router.get('/signup', authController.signupPage);
+router.post('/signup', authController.signupAction);
+router.get('/login', authController.loginPage);
+router.post('/login', authController.loginAction);
+router.get('/logout', authController.logout);
 
-// Ajouter page de remerciements aux auteurs:
-router.get('/authors', exempleController.author);
-
-// On exporte le routeur pour pouvoir l'utiliser dans d'autres fichiers (en l'occurence l'index.js dans notre cas)
 module.exports = router;

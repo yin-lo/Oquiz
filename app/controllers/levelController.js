@@ -1,42 +1,27 @@
-// const dataMapper = require("../database/dataMapper")
-// const Level = require("../models/Active Record/Level")
-const { Level } = require('../models/Sequelize/Association');
+const { Level } = require('../models');
 
 const levelController = {
-	displayLevels: async (req, res) => {
-		// Toutes les lignes du try vont etre executees tant qu'on ne rencontre pas d'erreur
-		try {
-			const levels = await Level.findAll();
+  async list(req, res) {
+    const levels = await Level.findAll();
+    // Pour vérifier le contenu, on peut utiliser le JSON.stringify
+    // console.log(JSON.stringify(levels, null, 2));
+    res.render('levels', {
+      levels,
+    });
+  },
 
-            const levelsWithQuestions = await Level.findAll({
-				include: 'levelQuestions',
-			});
-
-            console.log(levelsWithQuestions.map(leveWithQuestions => leveWithQuestions.toJSON()));
-
-
-			res.render('levels', { levels: levelsWithQuestions });
-		} catch (error) {
-			// Si la moindre erreur se produit alors on rentre dans le catch
-			console.log(error.message);
-			res.status(500).render('500');
-		}
-	},
-
-	addLevel: async (req, res) => {
-		try {
-			// await dataMapper.createLevel({ name: req.body.name })
-			// Avec le design patern active record on va d'abord instancier un objet grace a notre classe
-			const newLevel = new Level({ name: req.body.name });
-			// puis appeler la methode create
-			await newLevel.create();
-			res.redirect('/levels');
-		} catch (error) {
-			// Si la moindre erreur se produit alors on rentre dans le catch
-			console.log(error.message);
-			res.status(500).render('500');
-		}
-	},
+  async create(req, res) {
+    try {
+      // J'utilise les données dans le body de la requête pour créer mon level
+      await Level.create({
+        name: req.body.name,
+      });
+      res.redirect('/levels');
+    } catch (error) {
+      console.trace(error);
+      res.status(500).send('Une erreur est survenue');
+    }
+  },
 };
 
 module.exports = levelController;
